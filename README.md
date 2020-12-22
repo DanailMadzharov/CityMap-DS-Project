@@ -1,4 +1,5 @@
 # CityMap-DS-Project
+CLICK ON RAW FOR A BETTER VIEW!!!
 A city map implemented with a directed weighted graph. The project includes implementations of some of the more famous digraph algorithms, including Eulerian Path/Circuit, shortest paths from A to B, closing and opening different crossroads, and finding alternative paths.
 
 Before you start the program, make sure you input the crossroads in the input file (input.txt) the right way -
