@@ -84,19 +84,24 @@ void UserInterface::interactive()
 
             std::cout<<"The following crossroads are closed: "<<std::endl;
          
-            for(auto const& element : closed){
+            for(auto const& element : city.getClosed()){
                 std::cout<<counter<<". "<<element<<std::endl;
                 counter++;
             }
 
             std::cout<<std::endl;
         }
-        else if (word1 == "change" || word1 == "move" || word1 == "close" || word1 == "open")
+        else if (word1 == "change" || word1 == "move" || word1 == "close" || word1 == "open" || word1 == "dead")
         {
             std::getline(std::cin, word2);
             
             word2.erase(word2.begin());
 
+            if(word2 == "ends") {
+                city.deadEnds();
+            }
+            
+            else {
             if (city.getCrossroads().count(word2) != 0)
             {
                 if (word1 == "change")
@@ -108,7 +113,7 @@ void UserInterface::interactive()
                 else if (word1 == "move")
                 {
                     std::cout<<std::endl;
-                    std::map<int, std::list<std::string>> allPaths = city.aSinglePathPrint(closed, currentLocation, word2);
+                    std::map<int, std::list<std::string>> allPaths = city.aSinglePathPrint(city.getClosed(), currentLocation, word2);
                     if(allPaths.empty()){
                         std::cout<<std::endl<<"There is no possible path to this location!"<<std::endl;
                     } else {
@@ -118,17 +123,18 @@ void UserInterface::interactive()
                 }
                 else if (word1 == "close")
                 {
-                    closed.insert(word2);
+                    city.getClosed().insert(word2);
                     std::cout<<std::endl;
                 }
                 else if (word1 == "open")
                 {
-                    closed.erase(word2);
+                    city.getClosed().erase(word2);
                     std::cout<<std::endl;
                 }
-            } else {
-                std::cout<<std::endl<<std::endl<<"This crossroad does not exist!"<<std::endl;
-                std::cout<<std::endl;
+                } else {
+                    std::cout<<std::endl<<std::endl<<"This crossroad does not exist!"<<std::endl;
+                    std::cout<<std::endl;
+                }
             }
         }
     }
@@ -139,13 +145,14 @@ void UserInterface::printMenu()
     std::cout<<std::endl;
     std::cout << "You have the following commands: " << std::endl
               << std::endl;
-    std::cout << "\t1. 'location' - shows you the current location" << std::endl;
-    std::cout << "\t2. 'change @' - changes the current location to @ (if it exists)" << std::endl;
-    std::cout << "\t3. 'neighbours' - shows you the adjecent crossroad to the current one" << std::endl;
-    std::cout << "\t4. 'move @' - move to a location from the current location (if a path and the crossroad exist)" << std::endl;
-    std::cout << "\t5. 'close @' - adds @ to the list of closed crossroads" << std::endl;
-    std::cout << "\t6. 'open @' - removes @ from the list of closed crossroads" << std::endl;
-    std::cout << "\t7. 'tour' - a full tour of the city (if possible)" << std::endl;
-    std::cout << "\t8. 'closed' - a full list of the closed crossroads" << std::endl;
-    std::cout << "\t9. 'quit' - quits the program" << std::endl;
+    std::cout << "\t 1. 'location' - shows you the current location" << std::endl;
+    std::cout << "\t 2. 'change @' - changes the current location to @ (if it exists)" << std::endl;
+    std::cout << "\t 3. 'neighbours' - shows you the adjecent crossroad to the current one" << std::endl;
+    std::cout << "\t 4. 'move @' - move to a location from the current location (if a path and the crossroad exist)" << std::endl;
+    std::cout << "\t 5. 'close @' - adds @ to the list of closed crossroads" << std::endl;
+    std::cout << "\t 6. 'open @' - removes @ from the list of closed crossroads" << std::endl;
+    std::cout << "\t 7. 'tour' - a full tour of the city (if possible)" << std::endl;
+    std::cout << "\t 8. 'closed' - a full list of the closed crossroads" << std::endl;
+    std::cout << "\t 9. 'dead ends' - returns a list of all dead ends in the city" << std::endl;
+    std::cout << "\t10. 'quit' - quits the program" << std::endl;
 }

@@ -5,7 +5,6 @@
 class UserInterface
 {
     City city;
-    std::set<std::string> closed;
     void interactive();
 
     public:

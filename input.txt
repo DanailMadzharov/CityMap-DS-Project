@@ -2,4 +2,4 @@
 BSFS DobrotitsaDespot 100 IvanVazov 100
 DobrotitsaDespot IvanVazov 100
 IvanVazov BSFS 100 5Kiosheta 100
-KorabPlanina IvanVazov 100
+KorabPlanina IvanVazov 200

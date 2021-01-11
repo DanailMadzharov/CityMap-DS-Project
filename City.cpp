@@ -234,6 +234,7 @@ std::map<int, std::list<std::string>> City::aSinglePathPrint(std::set<std::strin
             if (str == elem.second.back())
             {
                 std::cout << str;
+                std::cout << " | length "<<elem.first;
                 break;
             }
             std::cout << str << " -> ";
@@ -243,4 +244,8 @@ std::map<int, std::list<std::string>> City::aSinglePathPrint(std::set<std::strin
 
         return allPaths;
     }
+}
+
+std::set<std::string>& City::getClosed(){
+    return this->closed;
 }

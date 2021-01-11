@@ -4,8 +4,10 @@
 
 class City {
     Graph graph;
+    std::set<std::string> closed;
 
     public:
+    std::set<std::string>& getClosed();
     std::set<std::string>& getCrossroads();
     std::set<std::string>& neighbours(const std::string& v);
     void addCrossroad(const std::string& v);
